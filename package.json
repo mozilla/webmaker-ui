@@ -1,6 +1,6 @@
 {
   "name": "webmaker-uijs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "bower": "1.2.3",
     "express": "~3.2.0",
