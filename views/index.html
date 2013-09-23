@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="/bower/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <title>UI.js</title>
+    <style>
+    html, body {
+      font-family: "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      height: 100%;
+    }
+    /*********************************************************
+    * SELECTS
+    */
+    .ui-select-menu ul  > li:hover,
+    .ui-select-menu ul  > li[data-selected] {
+      color: #4d4e53;
+      background: #e3eaee;
+    }
+    #lang-picker:hover {
+      border-color: #CCC;
+    }
+    #lang-picker {
+      margin: -7px 15px 0 0;
+      border-color: transparent;
+      padding: 10px;
+      margin: 0;
+    }
+    #lang-picker > .icon::before {
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      *margin-right: .3em;
+      content: "\f0d7";
+    }
+    #lang-picker ul {
+      background: white;
+      display: inline-block;
+    }
+    #lang-picker ul li {
+      display: block;
+      padding: 10px;
+    }
+    #lang-picker > .icon:hover {
+      background: none;
+      color: #555;
+    }
+    #lang-picker > .icon {
+      background: none;
+      color: #555;
+      padding: 0 10px 0 0;
+    }
+    #lang-picker .ui-select-menu {
+      width: auto;
+      border-color: #CCC;
+    }
+    #lang-picker .ui-select-menu ul {
+      width: auto;
+    }
+    #lang-picker .ui-smedium {
+      width: auto;
+    }
+    #lang-picker .ui-selected::before {
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      *margin-right: .3em;
+      content: "\f0ac";
+      margin-right: 5px;
+    }
+    li.lang-picker:first-child {
+      border-right: none;
+    }
+    .ui-selected {
+      display: inline-block;
+    }
+    .ui-select-menu {
+      display: none;
+      position: absolute;
+      left: -1px;
+      border: 1px solid #dddddd;
+      z-index: 100;
+      top: 100%;
+      width: 100%;
+    }
+    .ui-select-menu ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .ui-select-menu ul > li {
+      color: #999aa0;
+      padding: 0 1em;
+      background: #FFF;
+      border-bottom: 1px solid #dddddd;
+    }
+    .ui-select-menu ul > li:last-child {
+      border-bottom: none;
+    }
+    .ui-select-menu:hover {
+      border-color: #27aae1;
+    }
+    .ui-select {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      text-align: left;
+      border: 1px solid #dddddd;
+    }
+
+    </style>
+  </head>
+  <body>
+  <div class="dropdown-options">
+    <select id="dropdown-options">
+      <option selected="selected" value="1">Option Number One</option>
+      <option value="2">Option Number Two</option>
+      <option value="3">Option Number Three</option>
+      <option value="4">Option Number Four</option>
+    </select>
+    </div>
+    <script id="require-js" src="/bower/requirejs/require.js"
+      data-main="/js/main.js">
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "webmaker-uijs",
+  "dependencies": {
+  	"font-awesome": "3.2.1",
+    "requirejs": "2.1.8",
+    "text": "2.0.9"
+  }
+}
