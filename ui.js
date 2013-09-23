@@ -3,7 +3,7 @@
  * that we used to display for the drop down menu
  */
 
-define( [ "text!html/ui-fragments.html" ], function( _fragments ) {
+define( [ "text!../html/ui-fragments.html" ], function( _fragments ) {
   "use strict";
 
   var UI = {},
