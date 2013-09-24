@@ -13,23 +13,5 @@ require(['ui'],
     var dropdownSelector = document.querySelector( ".dropdown-options" )
 
     // URL redirector for language picker
-    UI.select(dropdownSelector, function(selectedLang) {
-      var href = document.location.pathname,
-        lang = document.querySelector( "html" ).lang;
-      if(selectedLang === lang){
-        window.location = href;
-      }
-      else if(href.indexOf(lang) >= 0){
-        href = href.replace(lang, selectedLang);
-        window.location = href;
-      }
-      else if(href.indexOf("/") >= 0){
-        window.location = selectedLang+href;
-      }
-      else if(href.indexOf("/") < 0){
-        href = href.substr(href.indexOf("/") + 0)
-        window.location = "/"+selectedLang+href;
-      }
-    });
-
+    UI.langPicker(dropdownSelector);
 });

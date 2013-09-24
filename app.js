@@ -15,6 +15,15 @@ app.get( "/", function( req, res ) {
   res.render( "index.html" );
 });
 
+app.get( "/js/ui.js", function(req, res){
+	res.set( "Content-Type", "application/javascript" );
+	res.render("ui.js")
+});
+
+app.get( "/js/ui-fragments.html", function(req, res){
+	res.render("ui-fragments.html")
+});
+
 app.listen(8000, function() {
   console.log("Server listening ( http://localhost:8000");
 });

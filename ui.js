@@ -10,6 +10,7 @@ define( [ "text!./ui-fragments.html" ], function( _fragments ) {
     fragments = document.createElement( "div" );
   fragments.innerHTML = _fragments;
 
+
   // URL redirector for language picker
   UI.langPicker = function( elem ) {
     UI.select( elem, function(selectedLang) {
@@ -39,7 +40,8 @@ define( [ "text!./ui-fragments.html" ], function( _fragments ) {
    selectedEl = el.querySelector(".ui-selected"),
    menuContainer = el.querySelector(".ui-select-menu"),
    menu = menuContainer.querySelector("ul"),
-   li = menu.querySelector("li");
+   li = menu.querySelector("li"),
+   showing = false;
 
    var options = select.querySelectorAll('option'),
    id = select.id;
@@ -80,13 +82,36 @@ define( [ "text!./ui-fragments.html" ], function( _fragments ) {
      menu.appendChild(newLi);
    }
 
-   selectedEl.addEventListener("click", function(e) {
-     menuContainer.style.display = menuContainer.style.display ? "": "block";
-   }, false);
+    (function loadOurStuff() {
+      var langList = document.querySelectorAll(".langList");
 
-   toggleBtn.addEventListener("click", function(e) {
-     menuContainer.style.display = menuContainer.style.display ? "": "block";
-   }, false);
+      function showOption() { 
+        if(!showing) {
+          showing = true;
+          menuContainer.style.display = "block";
+        }
+      }
+
+      function hideOption() {
+        if(showing) {
+          showing = false;
+          menuContainer.style.display = "none";
+        }
+      }
+
+      // We are checking if the list has been loaded or not and if not then
+      // we are going to wait for another 500ms then loadOurStuff again
+      if (langList.length === 0) {
+        return setTimeout(loadOurStuff, 500);
+      }
+
+      // Event listeners
+      el.addEventListener("mouseover", showOption);
+      el.addEventListener("mouseout", hideOption);
+      menuContainer.addEventListener("mouseover", showOption);
+      menuContainer.addEventListener("mouseout", hideOption);
+     
+    }());
 
    el.id = id;
    select.id = "";
