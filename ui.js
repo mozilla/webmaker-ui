@@ -10,6 +10,28 @@ define( [ "text!./ui-fragments.html" ], function( _fragments ) {
     fragments = document.createElement( "div" );
   fragments.innerHTML = _fragments;
 
+  // URL redirector for language picker
+  UI.langPicker = function( elem ) {
+    UI.select( elem, function(selectedLang) {
+      var href = document.location.pathname,
+        lang = document.querySelector( "html" ).lang;
+      if(selectedLang === lang) {
+        return;
+      }
+      else if(href.indexOf(lang) !== -1) {
+        href = href.replace(lang, selectedLang);
+        window.location = href;
+      }
+      else if(href.indexOf('/') !== -1) {
+        window.location = '/'+selectedLang+href;
+      }
+      else {
+        href = href.substr(href.indexOf('/') + 0);
+        window.location = '/'+selectedLang+href;
+      }
+    });
+  };
+
   UI.select = function( select, onSelectedHandler ) {
 
    var el = fragments.querySelector(".ui-select").cloneNode(true),
@@ -50,7 +72,7 @@ define( [ "text!./ui-fragments.html" ], function( _fragments ) {
         currentSelected.removeAttribute("data-selected");
       }
       this.setAttribute("data-selected", true);
-      selectedEl.innerHTML = html;
+      selectedEl.innerHTML = this.innerHTML;
       menuContainer.style.display = "none";
       onSelectedHandler(value);
       select.value = value;
