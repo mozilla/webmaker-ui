@@ -20,8 +20,8 @@ app.get( "/js/ui.js", function(req, res){
 	res.render("ui.js")
 });
 
-app.get( "/js/ui-fragments.html", function(req, res){
-	res.render("ui-fragments.html")
+app.get( "/js/webmaker-ui-fragments.html", function(req, res){
+	res.render("webmaker-ui-fragments.html")
 });
 
 app.listen(8000, function() {
