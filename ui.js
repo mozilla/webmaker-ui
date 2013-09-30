@@ -3,37 +3,38 @@
  * that we used to display for the drop down menu
  */
 
-define( [ "text!./webmaker-ui-fragments.html" ], function( _fragments ) {
+define([ "text!./webmaker-ui-fragments.html" ], function(_fragments) {
   "use strict";
 
   var UI = {},
-    fragments = document.createElement( "div" );
+    fragments = document.createElement("div");
   fragments.innerHTML = _fragments;
 
-
   // URL redirector for language picker
-  UI.langPicker = function( elem ) {
-    UI.select( elem, function(selectedLang) {
+  UI.langPicker = function(elem) {
+    UI.select(elem, function(selectedLang) {
       var href = document.location.pathname,
-        lang = document.querySelector( "html" ).lang;
-      if(selectedLang === lang) {
+          lang = document.querySelector("html").lang,
+          supportedLanguages = selectedLang.split(","),
+          selectedLang = supportedLanguages[0],
+          // matches any of these: 
+          // `en`, `en-us`, `en-US` or `ady` 
+          matches = href.match(/([a-z]{2,3})([-]([a-zA-Z]{2}))?/);
+
+      // if the selected language is match to the language in the header
+      if (selectedLang === lang) {
         return;
-      }
-      else if(href.indexOf(lang) !== -1) {
-        href = href.replace(lang, selectedLang);
+      // check if we have any matches and they are exist in the array we have
+      } else if ((matches && matches[0]) && supportedLanguages.indexOf(matches[0]) !== -1) {
+        href = href.replace(matches[0], selectedLang);
         window.location = href;
-      }
-      else if(href.indexOf('/') !== -1) {
-        window.location = '/'+selectedLang+href;
-      }
-      else {
-        href = href.substr(href.indexOf('/') + 0);
-        window.location = '/'+selectedLang+href;
+      } else {
+        window.location = "/" + selectedLang + href;
       }
     });
   };
 
-  UI.select = function( select, onSelectedHandler ) {
+  UI.select = function(select, onSelectedHandler) {
 
    var el = fragments.querySelector(".ui-select").cloneNode(true),
    toggleBtn = el.querySelector(".icon"),
@@ -43,7 +44,7 @@ define( [ "text!./webmaker-ui-fragments.html" ], function( _fragments ) {
    li = menu.querySelector("li"),
    showing = false;
 
-   var options = select.querySelectorAll('option'),
+   var options = select.querySelectorAll("option"),
    id = select.id;
 
    onSelectedHandler = onSelectedHandler || function() {};
