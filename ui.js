@@ -15,8 +15,7 @@ define([ "text!./webmaker-ui-fragments.html" ], function(_fragments) {
     UI.select(elem, function(selectedLang) {
       var href = document.location.pathname,
           lang = document.querySelector("html").lang,
-          supportedLanguages = selectedLang.split(","),
-          selectedLang = supportedLanguages[0],
+          supportedLanguages = elem.getAttribute("data-supported"),
           // matches any of these: 
           // `en`, `en-us`, `en-US` or `ady` 
           matches = href.match(/([a-z]{2,3})([-]([a-zA-Z]{2}))?/);
