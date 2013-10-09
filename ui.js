@@ -13,18 +13,20 @@ define([ "text!./webmaker-ui-fragments.html" ], function(_fragments) {
   // URL redirector for language picker
   UI.langPicker = function(elem) {
     UI.select(elem, function(selectedLang) {
-      var href = document.location.pathname,
+      var matchesLang,
+          href = document.location.pathname,
           lang = document.querySelector("html").lang,
           supportedLanguages = elem.getAttribute("data-supported"),
           // matches any of these: 
           // `en`, `en-us`, `en-US` or `ady` 
           matches = href.match(/([a-z]{2,3})([-]([a-zA-Z]{2}))?/);
+          matchesLang = matches && matches[2] ? matches[1].toLowerCase() + matches[2].toUpperCase() : matches[1].toLowerCase();
 
       // if the selected language is match to the language in the header
       if (selectedLang === lang) {
         return;
       // check if we have any matches and they are exist in the array we have
-      } else if ((matches && matches[0]) && supportedLanguages.indexOf(matches[0]) !== -1) {
+      } else if ((matches && matches[0]) && supportedLanguages.indexOf(matchesLang) !== -1) {
         href = href.replace(matches[0], selectedLang);
         window.location = href;
       } else {
