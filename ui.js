@@ -21,13 +21,13 @@ define([ "text!./webmaker-ui-fragments.html" ], function(_fragments) {
           // `en`, `en-us`, `en-US` or `ady` 
           matches = href.match(/([a-z]{2,3})([-]([a-zA-Z]{2}))?/);
 
-          if (matches) {
-            if(matches[2]) {
-              matchesLang = matches[1].toLowerCase() + matches[2].toUpperCase();
-            } else {
-              matchesLang = matches[1].toLowerCase();
-            }
-          }
+      if (matches) {
+        if(matches[1] && matches[2]) {
+          matchesLang = matches[1].toLowerCase() + matches[2].toUpperCase();
+        } else {
+          matchesLang = matches[1].toLowerCase();
+        }
+      }
       // if the selected language is match to the language in the header
       if (selectedLang === lang) {
         return;
